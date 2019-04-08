@@ -1,4 +1,4 @@
-package cn.goodym;
+package cn.goodym.service;
 
 import static org.junit.Assert.assertTrue;
 

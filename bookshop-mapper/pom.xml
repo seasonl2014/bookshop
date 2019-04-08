@@ -11,6 +11,39 @@
 
     <artifactId>bookshop-mapper</artifactId>
 
-    <name>bookshop-mapper</name>
+<dependencies>
+    <dependency>
+        <groupId>cn.goodym</groupId>
+        <artifactId>bookshop-pojo</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <!-- 引入mysql驱动 -->
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+    </dependency>
+
+    <!-- 引入mybatis核心包 -->
+    <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis</artifactId>
+    </dependency>
+
+    <!-- 引入spring集成mybatis的包 -->
+    <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis-spring</artifactId>
+    </dependency>
+    <!-- mybatis分页插件依赖 -->
+    <dependency>
+        <groupId>com.github.pagehelper</groupId>
+        <artifactId>pagehelper</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+    </dependency>
+
+</dependencies>
 
 </project>

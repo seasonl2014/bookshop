@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.goodym.dao.BookDao" >
+  <resultMap id="BaseResultMap" type="cn.goodym.pojo.Book" >
+    <id column="id" property="id" />
+    <result column="book_name" property="bookName"/>
+    <result column="cover" property="cover"/>
+    <result column="price" property="price"/>
+    <result column="intro" property="intro"/>
+    <result column="auther" property="auther"/>
+    <result column="press" property="press"/>
+    <result column="pubdate" property="pubdate"/>
+    <result column="special" property="special"/>
+    <result column="news" property="news"/>
+    <result column="sale" property="sale"/>
+    <result column="category_id" property="categoryId"/>
+
+  </resultMap>
+  
+  
+  
+  <sql id="Base_Column_List" >
+    id, book_name, cover,price, intro, auther,press, pubdate, special,news, sale, category_id
+  </sql>
+  
+  <!-- 根据书籍id获取书籍信息 -->
+  <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from book where id = #{id}
+    
+  </select>
+  
+  <!-- 分页获取书籍信息 -->
+  <select id="getPageList" resultMap="BaseResultMap" parameterType="cn.goodym.pojo.Book" >
+    select
+    <include refid="Base_Column_List" />
+    from book
+    
+    <where>
+    
+    <if test="bookName!=null and bookName!=''">
+        book_name = #{bookName}
+    </if>
+    
+
+    </where>
+    
+  </select>
+
+  <!-- 获取全部书籍列表-->
+  <select id="getList" resultMap="BaseResultMap" parameterType="cn.goodym.pojo.Book" >
+    select
+    <include refid="Base_Column_List" />
+    from book
+
+  </select>
+  
+    
+  <!-- 新增记录 -->
+  <insert id="add" useGeneratedKeys="true" keyProperty="id"  parameterType="cn.goodym.pojo.Book" >
+    insert into book (
+     book_name,
+     cover,
+     price,
+     intro,
+     auther,
+     press,
+     pubdate,
+     special,
+     news,
+     sale,
+     category_id
+    )
+    values (
+     #{bookName},
+     #{cover},
+     #{price},
+     #{intro},
+     #{auther},
+     #{press},
+     #{pubdate},
+     #{special},
+     #{news},
+     #{sale},
+     #{categoryId}
+    )
+  </insert>
+
+
+  <!--更新书籍信息-->
+  <update id="updateById" parameterType="cn.goodym.pojo.Book" >
+    update book
+    <set >
+      <if test="bookName != null and bookName!=''" >
+          book_name = #{bookName},
+      </if>
+      <if test="cover != null and cover!=''" >
+          cover = #{cover},
+      </if>
+      <if test="price != null" >
+          price = #{price},
+      </if>
+      <if test="intro != null and intro!=''" >
+          intro = #{intro},
+      </if>
+
+       <if test="auther != null and auther!=''" >
+           auther = #{auther},
+      </if>
+
+      <if test="press != null and press!=''" >
+          press = #{press},
+      </if>
+
+      <if test="special != null " >
+          special = #{special},
+      </if>
+
+      <if test="news != null " >
+          news = #{news},
+       </if>
+
+       <if test="sale != null " >
+            sale = #{sale},
+        </if>
+
+        <if test="categoryId != null " >
+            category_id = #{categoryId},
+        </if>
+
+    </set>
+    where id = #{id}
+  </update>
+
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    DELETE FROM book WHERE  id = #{id}
+  </delete>
+
+</mapper>
